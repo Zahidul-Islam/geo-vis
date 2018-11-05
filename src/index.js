@@ -9,7 +9,7 @@ import store from "./store";
 
 // import Login from "./LogIn";
 // import SignUp from "./SignUp";
-import firebase from "./base";
+// import firebase from "./base";
 
 //import history from "./history";
 //import Auth from "./auth";
@@ -31,23 +31,23 @@ const history = syncHistoryWithStore(browserHistory, store);
 class Root extends Component {
   state = { loading: true, authenticated: false, user: null };
 
-  componentWillMount() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.setState({
-          authenticated: true,
-          currentUser: user,
-          loading: false
-        });
-      } else {
-        this.setState({
-          authenticated: false,
-          currentUser: null,
-          loading: false
-        });
-      }
-    });
-  }
+  // componentWillMount() {
+  //   firebase.auth().onAuthStateChanged(user => {
+  //     if (user) {
+  //       this.setState({
+  //         authenticated: true,
+  //         currentUser: user,
+  //         loading: false
+  //       });
+  //     } else {
+  //       this.setState({
+  //         authenticated: false,
+  //         currentUser: null,
+  //         loading: false
+  //       });
+  //     }
+  //   });
+  // }
 
   render() {
     // const { authenticated, loading } = this.state;
