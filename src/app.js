@@ -2,16 +2,19 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import AutoSizer from "react-virtualized/dist/commonjs/AutoSizer";
 import KeplerGl from "kepler.gl";
-
+// import Button from "./button";
 import { addDataToMap } from "kepler.gl/actions";
 import Processors from "kepler.gl/processors";
 import KeplerGlSchema from "kepler.gl/schemas";
 import downloadJsonFile from "./file-download";
-
 // Sample data
-import nycTrips from "./data/nyc-trips.csv";
+// import nycTrips from "./data/nyc-trips.csv";
 import nycTripsSubset from "./data/nyc-subset.csv";
-import nycConfig from "./data/nyc-config";
+// import nycConfig from "./data/nyc-config";
+
+// import Auth from "./auth";
+
+// const auth = new Auth();
 
 // Sample data earthquakes
 // import virginiaInsurancePointsSample from "./data/virginia-insurance-points-sample.csv";
@@ -22,8 +25,15 @@ import nycConfig from "./data/nyc-config";
 
 const MAPBOX_TOKEN =
   process.env.MapboxAccessToken || process.env.REACT_APP_MAPBOX_TOKEN; // eslint-disable-line
+// const lock = new Auth0Lock(
+//   "nnfwMUUhTpd5KjwI2fbH3hta5Mfst3cH",
+//   "voicefirstdesign.auth0.com"
+// );
 
 class App extends Component {
+  // login() {
+  //   auth.login();
+  // }
   componentDidMount() {
     // [
     //   virginiaInsurancePointsSample,
@@ -48,18 +58,18 @@ class App extends Component {
     //   }
     // });
     // Use processCsvData helper to convert csv file into kepler.gl structure {fields, rows}
-    const data = Processors.processCsvData(nycTrips);
-    // Create dataset structure
-    const dataset = {
-      data,
-      info: {
-        // this is used to match the dataId defined in nyc-config.json. For more details see API documentation.
-        // It is paramount that this id matches your configuration otherwise the configuration file will be ignored.
-        id: "my_data"
-      }
-    };
-    // addDataToMap action to inject dataset into kepler.gl instance
-    this.props.dispatch(addDataToMap({ datasets: dataset, config: nycConfig }));
+    // const data = Processors.processCsvData(nycTrips);
+    // // Create dataset structure
+    // const dataset = {
+    //   data,
+    //   info: {
+    //     // this is used to match the dataId defined in nyc-config.json. For more details see API documentation.
+    //     // It is paramount that this id matches your configuration otherwise the configuration file will be ignored.
+    //     id: "my_data"
+    //   }
+    // };
+    // // addDataToMap action to inject dataset into kepler.gl instance
+    // this.props.dispatch(addDataToMap({ datasets: dataset, config: nycConfig }));
   }
 
   // This method is used as reference to show how to export the current kepler.gl instance configuration
@@ -105,27 +115,30 @@ class App extends Component {
   };
 
   render() {
+    // const { isAuthenticated } = auth;
     return (
-      <div
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-          minHeight: "50vh"
-        }}
-      >
-        <AutoSizer>
-          {({ height, width }) => (
-            <KeplerGl
-              mapboxApiAccessToken={MAPBOX_TOKEN}
-              id="map"
-              width={width}
-              height={height}
-              appName="Cystellar"
-              version="v1.0-beta"
-            />
-          )}
-        </AutoSizer>
+      <div>
+        <div
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            minHeight: "50vh"
+          }}
+        >
+          <AutoSizer>
+            {({ height, width }) => (
+              <KeplerGl
+                mapboxApiAccessToken={MAPBOX_TOKEN}
+                id="map"
+                width={width}
+                height={height}
+                appName="Cystellar"
+                version="v1.0-beta"
+              />
+            )}
+          </AutoSizer>
+        </div>
       </div>
     );
   }
