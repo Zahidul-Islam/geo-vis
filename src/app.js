@@ -133,7 +133,7 @@ class App extends Component {
                 id="map"
                 width={width}
                 height={height}
-                appName="Cystellar"
+                appName="CyStellar TerraRisk Re"
                 version="v1.0-beta"
               />
             )}
